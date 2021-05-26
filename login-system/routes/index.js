@@ -66,8 +66,8 @@ router.post("/login", function (req, res, next) {
     if (data) {
       if (data.password == req.body.password) {
         //console.log("Done Login");
-        req.session.userId = data.unique_id;
-        //console.log(req.session.userId);
+        req.session.userid = data.unique_id;
+        //console.log(req.session.userid);
         res.send({ Success: "Success!" });
       } else {
         res.send({ Success: "Wrong password!" });
@@ -80,7 +80,7 @@ router.post("/login", function (req, res, next) {
 
 router.get("/profile", function (req, res, next) {
   console.log("profile");
-  User.findOne({ unique_id: req.session.userId }, function (err, data) {
+  User.findOne({ unique_id: req.session.userid }, function (err, data) {
     console.log("data");
     console.log(data);
     if (!data) {
